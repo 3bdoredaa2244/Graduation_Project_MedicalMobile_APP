@@ -4,14 +4,16 @@ class HomePage extends StatelessWidget {
   final List<Data> itemdata = [
     Data(
         text: " Online Visit",
-        imageUrl: "https://img.freepik.com/premium-vector/telemedicine-concept-vector-illustration-doctor-phone-online-visit-therapy_622933-258.jpg?w=2000"),
+        imageUrl:
+            "https://img.freepik.com/premium-vector/telemedicine-concept-vector-illustration-doctor-phone-online-visit-therapy_622933-258.jpg?w=2000"),
     Data(
         text: "  Clinic Visit",
-        imageUrl: "https://media.istockphoto.com/id/531475568/photo/patient-and-medical-staff.jpg?s=612x612&w=0&k=20&c=KqciFJ4FCJMwY04Ucjx1ZJe_316jM65GAUlmbTmGzBk="),
+        imageUrl:
+            "https://media.istockphoto.com/id/531475568/photo/patient-and-medical-staff.jpg?s=612x612&w=0&k=20&c=KqciFJ4FCJMwY04Ucjx1ZJe_316jM65GAUlmbTmGzBk="),
     Data(
         text: " Ambulance",
-        imageUrl: "https://w7.pngwing.com/pngs/962/452/png-transparent-ambulance-air-medical-services-basic-life-support-icon-ambulance-material-png-material-image-file-formats-accessories.png"),
-
+        imageUrl:
+            "https://w7.pngwing.com/pngs/962/452/png-transparent-ambulance-air-medical-services-basic-life-support-icon-ambulance-material-png-material-image-file-formats-accessories.png"),
   ];
 
   HomePage({super.key});
@@ -99,7 +101,6 @@ class HomePage extends StatelessWidget {
         children: [
           CategriesItems(size, "images\istockphoto-1177145926-612x612.jpg",
               "Cordeology", Colors.blue),
-
           CategriesItems(
             size,
             "images\istockphoto-1177145926-612x612.jpg",
@@ -242,11 +243,6 @@ class Data {
   Data({required this.imageUrl, required this.text});
 }
 
-
-
-
-
-
 /*
 import 'package:flutter/material.dart';
 
@@ -387,28 +383,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   }
 }
 */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /*
 

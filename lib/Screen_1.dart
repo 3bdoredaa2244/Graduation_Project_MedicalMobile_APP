@@ -1,7 +1,5 @@
-
 import 'package:clickcounter/Screen_2.dart';
 import 'package:flutter/material.dart';
-
 
 class FirstScrean extends StatelessWidget {
   const FirstScrean({super.key});
@@ -15,16 +13,16 @@ class FirstScrean extends StatelessWidget {
           width: Size.width,
           decoration: const BoxDecoration(
               image: DecorationImage(
-                image: NetworkImage('https://as2.ftcdn.net/v2/jpg/02/14/27/15/1000_F_214271552_qfVz2v418ATJZfXjACUV9ivoZsvh6f5n.jpg'),
-                fit: BoxFit.cover,
-              )
-          ),
+            image: NetworkImage(
+                'https://as2.ftcdn.net/v2/jpg/02/14/27/15/1000_F_214271552_qfVz2v418ATJZfXjACUV9ivoZsvh6f5n.jpg'),
+            fit: BoxFit.cover,
+          )),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               const Text(
                 "   ",
-             //   "Find Your Specialist ! ",
+                //   "Find Your Specialist ! ",
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 32,
@@ -36,8 +34,10 @@ class FirstScrean extends StatelessWidget {
               ),
               const Text(
                 "  Now it is easy to make an Appointment  With Your Doctor ",
-                style: TextStyle(color: Colors.black, fontSize: 16,
-                fontWeight: FontWeight.bold),
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold),
               ),
               SizedBox(
                 height: Size.height / 30,

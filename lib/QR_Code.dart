@@ -22,7 +22,8 @@ class _QRCodeScreenState extends State<QRCodeScreen> {
   }
 
   Future<void> _fetchQRCodeData() async {
-    final response = await http.get(Uri.parse('https://example.com/api/qrcode'));
+    final response =
+        await http.get(Uri.parse('https://example.com/api/qrcode'));
     if (response.statusCode == 200) {
       setState(() {
         final data = jsonDecode(response.body);
@@ -44,7 +45,7 @@ class _QRCodeScreenState extends State<QRCodeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-       title: Text('QR Code Screen'),
+        title: Text('QR Code Screen'),
       ),
       body: Center(
         child: Column(

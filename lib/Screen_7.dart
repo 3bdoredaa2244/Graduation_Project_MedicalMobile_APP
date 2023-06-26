@@ -47,7 +47,7 @@ class _SpecializationState extends State<Specialization> {
                     fontWeight: FontWeight.bold,
                   ),
             ),
-           const SizedBox(height: 10),
+            const SizedBox(height: 10),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               decoration: BoxDecoration(
@@ -73,10 +73,12 @@ class _SpecializationState extends State<Specialization> {
                   'Pediatrics',
                   'Dermatology',
                   'Ear, Nose, and Throat',
-                ].map((e) => DropdownMenuItem(
-                  child: Text(e),
-                  value: e,
-                )).toList(),
+                ]
+                    .map((e) => DropdownMenuItem(
+                          child: Text(e),
+                          value: e,
+                        ))
+                    .toList(),
                 onChanged: (value) {
                   setState(() {
                     selectedSpecialization = value.toString();
@@ -99,7 +101,7 @@ class _SpecializationState extends State<Specialization> {
             ),
             const SizedBox(height: 10),
             Row(
-              children:[
+              children: [
                 Expanded(
                   child: Container(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -121,10 +123,12 @@ class _SpecializationState extends State<Specialization> {
                         'Wednesday',
                         'Thursday',
                         'Friday',
-                      ].map((e) => DropdownMenuItem(
-                        child: Text(e),
-                        value: e,
-                      )).toList(),
+                      ]
+                          .map((e) => DropdownMenuItem(
+                                child: Text(e),
+                                value: e,
+                              ))
+                          .toList(),
                       onChanged: (value) {
                         setState(() {
                           selectedDay = value.toString();
@@ -169,10 +173,12 @@ class _SpecializationState extends State<Specialization> {
                         '3:00 PM - 6:00 PM',
                         '6:00 PM - 9:00 PM',
                         '9:00 PM - 12:00 AM'
-                      ].map((e) => DropdownMenuItem(
-                        child: Text(e),
-                        value: e,
-                      )).toList(),
+                      ]
+                          .map((e) => DropdownMenuItem(
+                                child: Text(e),
+                                value: e,
+                              ))
+                          .toList(),
                       onChanged: (value) {
                         setState(() {
                           selectedTime = value.toString();
@@ -218,10 +224,12 @@ class _SpecializationState extends State<Specialization> {
                         'Abdelrhman',
                         'Moustfa',
                         'Mona',
-                      ].map((e) => DropdownMenuItem(
-                        child: Text(e),
-                        value: e,
-                      )).toList(),
+                      ]
+                          .map((e) => DropdownMenuItem(
+                                child: Text(e),
+                                value: e,
+                              ))
+                          .toList(),
                       onChanged: (value) {
                         setState(() {
                           selectedDoctor = value.toString();
@@ -242,9 +250,9 @@ class _SpecializationState extends State<Specialization> {
               child: ElevatedButton(
                 onPressed: () {
                   Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => Appointment()),
-              );
+                    context,
+                    MaterialPageRoute(builder: (context) => Appointment()),
+                  );
                 },
                 child: const Text(
                   'BOOK APPOINTMENT',

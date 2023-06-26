@@ -1,10 +1,14 @@
+import 'package:clickcounter/dio/diohelper.dart';
 import 'package:flutter/material.dart';
+
+import 'models/hystory.dart';
 
 class MedicineRecord extends StatelessWidget {
   const MedicineRecord({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+   late HistoryModel model;
     return Scaffold(
       backgroundColor: Colors.grey.shade200,
       appBar: AppBar(
@@ -32,6 +36,14 @@ class MedicineRecord extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              ElevatedButton(onPressed: () {
+                DioHelper.getData(url: "https://localhost:7175/api/PatientHistory/6bfe940c-034d-4f78-b388-5530bd9533f5").
+                  then((value) => model=HistoryModel.fromjson(value.data)).catchError((error)=>
+                  print(error),
+                  );
+
+              }, child: 
+              Text("get")),
               const SizedBox(height: 20),
               Text(
                 "Patient Information",
@@ -95,13 +107,16 @@ class MedicineRecord extends StatelessWidget {
                       const SizedBox(height: 10),
                       _buildInfoRow("Mother's Medical History", "Diabetes"),
                       const SizedBox(height: 10),
-                      _buildInfoRow("Grandfather's Medical History", "Heart Disease"),
+                      _buildInfoRow(
+                          "Grandfather's Medical History", "Heart Disease"),
                       const SizedBox(height: 10),
                       _buildInfoRow("Sensitivities", "None"),
                       const SizedBox(height: 10),
-                      _buildInfoRow("Medications", "Lisinopril (10mg) for blood pressure"),
+                      _buildInfoRow("Medications",
+                          "Lisinopril (10mg) for blood pressure"),
                       const SizedBox(height: 10),
-                      _buildInfoRow("Vaccinations", "Flu vaccine received annually"),
+                      _buildInfoRow(
+                          "Vaccinations", "Flu vaccine received annually"),
                     ],
                   ),
                 ),

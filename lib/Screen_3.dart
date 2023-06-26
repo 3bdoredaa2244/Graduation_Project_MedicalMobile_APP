@@ -1,16 +1,15 @@
+import 'package:flutter/material.dart';
 import 'package:clickcounter/QR_Code.dart';
 import 'package:clickcounter/Screen_4.dart';
 import 'package:clickcounter/Screen_5.dart';
+import 'package:clickcounter/Screen_6.dart';
 import 'package:clickcounter/Screen_7.dart';
 import 'package:clickcounter/Screen_8.dart';
-import 'package:flutter/material.dart';
 
-import 'Screen_6.dart';
+void main() => runApp(const Options());
 
-void main() => runApp(const MyApp());
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class Options extends StatelessWidget {
+  const Options({Key? key}) : super(key: key);
 
   static const String _title = 'CDCE';
 
@@ -18,8 +17,20 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: _title,
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        fontFamily: 'Roboto',
+      ),
       home: Scaffold(
-        appBar: AppBar(title: const Text(_title)),
+        appBar: AppBar(
+          title: const Text(
+            _title,
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 24,
+            ),
+          ),
+        ),
         body: const MyStatefulWidget(),
       ),
     );
@@ -39,15 +50,17 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(30),
+    return Container(
+      padding: const EdgeInsets.all(16),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           const SizedBox(
             height: 30,
           ),
           const Text(
-            'CDCE',
+            'Welcome to CDCE',
             style: TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.w500,
@@ -73,6 +86,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             style: ElevatedButton.styleFrom(
               minimumSize: const Size(double.infinity, 80),
               primary: Colors.blue,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
             ),
           ),
           const SizedBox(
@@ -94,6 +110,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             style: ElevatedButton.styleFrom(
               minimumSize: const Size(double.infinity, 80),
               primary: Colors.blue,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
             ),
           ),
           const SizedBox(
@@ -113,6 +132,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             style: ElevatedButton.styleFrom(
               minimumSize: const Size(double.infinity, 80),
               primary: Colors.blue,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
             ),
           ),
           const SizedBox(
@@ -123,8 +145,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) =>
-                      PrescriptionTable(prescriptionData: []),
+                  builder: (context) => PrescriptionTable(prescriptionData: []),
                 ),
               );
               print(nameController.text);
@@ -137,6 +158,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             style: ElevatedButton.styleFrom(
               minimumSize: const Size(double.infinity, 80),
               primary: Colors.blue,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
             ),
           ),
           const SizedBox(
@@ -156,6 +180,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             style: ElevatedButton.styleFrom(
               minimumSize: const Size(double.infinity, 80),
               primary: Colors.blue,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
             ),
           ),
         ],

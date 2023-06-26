@@ -45,7 +45,10 @@ class PrescriptionTable extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
                     'اسم الدواء',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0, color: Colors.black),
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16.0,
+                        color: Colors.black),
                   ),
                 ),
               ),
@@ -54,7 +57,10 @@ class PrescriptionTable extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
                     'الكمية',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0, color: Colors.black),
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16.0,
+                        color: Colors.black),
                   ),
                 ),
               ),
@@ -63,7 +69,10 @@ class PrescriptionTable extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
                     'الطريقة',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0, color: Colors.black),
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16.0,
+                        color: Colors.black),
                   ),
                 ),
               ),
@@ -72,77 +81,82 @@ class PrescriptionTable extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
                     'الجرعة',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0, color: Colors.black),
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16.0,
+                        color: Colors.black),
                   ),
                 ),
               ),
             ],
           ),
         ),
-        for (var prescription in prescriptionData)
-          ...[
-            for (var drug in prescription.drugDetails)
-              Container(
-                decoration: BoxDecoration(
-                  border: Border.all(width: 1.0),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Expanded(
-                      flex: 2,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child:Text(drug.drugName),
-                      ),
-                    ),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(drug.amount),
-                      ),
-                    ),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(drug.route),
-                      ),
-                    ),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(drug.frequency),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+        for (var prescription in prescriptionData) ...[
+          for (var drug in prescription.drugDetails)
             Container(
               decoration: BoxDecoration(
-                color: Colors.grey[200],
                 border: Border.all(width: 1.0),
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      'ملاحظات:',
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0, color: Colors.black),
+                  Expanded(
+                    flex: 2,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(drug.drugName),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      prescription.prescription.notes,
-                      style: TextStyle(fontSize: 16.0, color: Colors.black),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(drug.amount),
+                    ),
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(drug.route),
+                    ),
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(drug.frequency),
                     ),
                   ),
                 ],
               ),
             ),
-          ],
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.grey[200],
+              border: Border.all(width: 1.0),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    'ملاحظات:',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16.0,
+                        color: Colors.black),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    prescription.prescription.notes,
+                    style: TextStyle(fontSize: 16.0, color: Colors.black),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ],
     );
   }
