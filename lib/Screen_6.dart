@@ -1,151 +1,293 @@
-import 'package:clickcounter/dio/diohelper.dart';
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rosheta/recordCubit/recordCubit.dart';
+import 'package:rosheta/recordCubit/recordStates.dart';
 
 import 'models/hystory.dart';
 
 class MedicineRecord extends StatelessWidget {
-  const MedicineRecord({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
-   late HistoryModel model;
-    return Scaffold(
-      backgroundColor: Colors.grey.shade200,
-      appBar: AppBar(
-        backgroundColor: Colors.blue,
-        leading: IconButton(
-          icon: const Icon(Icons.menu),
-          onPressed: () {},
-        ),
-        title: const Text(
-          'Medicine Record',
-          style: TextStyle(
-            fontSize: 22,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        centerTitle: true,
-        actions: [
-          Image(image: AssetImage("images/logo.jpg")),
-          const SizedBox(width: 10),
-        ],
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ElevatedButton(onPressed: () {
-                DioHelper.getData(url: "https://localhost:7175/api/PatientHistory/6bfe940c-034d-4f78-b388-5530bd9533f5").
-                  then((value) => model=HistoryModel.fromjson(value.data)).catchError((error)=>
-                  print(error),
-                  );
+    return BlocProvider(
+        create: (context) => MedicalCubit()..getMedical(),
+        child: BlocConsumer<MedicalCubit, MedicalStates>(
+            listener: (context, state) {},
+            builder: (context, state) {
+              var cubit = MedicalCubit.get(context);
 
-              }, child: 
-              Text("get")),
-              const SizedBox(height: 20),
-              Text(
-                "Patient Information",
-                style: Theme.of(context).textTheme.headline5!.copyWith(
-                      color: Colors.blue,
-                      fontWeight: FontWeight.bold,
+              var mm = MedicalCubit.get(context).medicalmodel;
+              HistoryModel? model;
+
+              return ConditionalBuilder(
+                condition: state is MedicalSuccess,
+                builder: (context) => SafeArea(
+                    child: Scaffold(
+                  appBar: AppBar(
+                    backgroundColor: Colors.white,
+                    title: Text(
+                      "CDCE",
+                      style: TextStyle(color: Colors.black),
                     ),
-              ),
-              const SizedBox(height: 20),
-              Card(
-                elevation: 2,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(15),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    leading: Container(
+                      child: Image.asset('assets/images/medical.png'),
+                    ),
+                    elevation: 0,
+                  ),
+                  body: Column(
                     children: [
-                      _buildInfoRow("Name", "Mohamed"),
-                      const SizedBox(height: 10),
-                      _buildInfoRow("Blood Type", "O+"),
-                      const SizedBox(height: 10),
-                      _buildInfoRow("Age", "32"),
-                      const SizedBox(height: 10),
-                      _buildInfoRow("Gender", "Male"),
-                      const SizedBox(height: 10),
-                      _buildInfoRow("Height", "175 cm"),
-                      const SizedBox(height: 10),
-                      _buildInfoRow("Weight", "70 kg"),
+                      Text(
+                        "Medical Record",
+                        style: TextStyle(
+                            fontSize: 30, fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(height: 20),
+                      Card(
+                        elevation: 2,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(15),
+                          child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "patientId",
+                                      style: const TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    Text(
+                                      mm!.patientid,
+                                      style: const TextStyle(
+                                        fontSize: 18,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 30,
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "Previous Medical Conditions",
+                                      style: const TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    Text(
+                                      mm.condition,
+                                      style: const TextStyle(
+                                        fontSize: 18,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 30,
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "Previous Surgeries",
+                                      style: const TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    Text(
+                                      mm.Surgeries,
+                                      style: const TextStyle(
+                                        fontSize: 18,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 30,
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "Hospital Referrals",
+                                      style: const TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    Text(
+                                      mm.hospitalizations,
+                                      style: const TextStyle(
+                                        fontSize: 18,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 30,
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "Father's Medical History",
+                                      style: const TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    Text(
+                                      mm.fatherMedicalHistory,
+                                      style: const TextStyle(
+                                        fontSize: 18,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 30,
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "Mother's Medical History",
+                                      style: const TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    Text(
+                                      mm.motherMedicalHistory,
+                                      style: const TextStyle(
+                                        fontSize: 18,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 30,
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "Grandfather's Medical History",
+                                      style: const TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    Text(
+                                      mm.grandfatherMedicalHistory,
+                                      style: const TextStyle(
+                                        fontSize: 18,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 30,
+                                ),
+                              ]),
+                        ),
+                      )
                     ],
                   ),
-                ),
-              ),
-              const SizedBox(height: 20),
-              Text(
-                "Medical History",
-                style: Theme.of(context).textTheme.headline5!.copyWith(
-                      color: Colors.blue,
-                      fontWeight: FontWeight.bold,
-                    ),
-              ),
-              const SizedBox(height: 20),
-              Card(
-                elevation: 2,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(15),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      _buildInfoRow("Previous Medical Conditions", "None"),
-                      const SizedBox(height: 10),
-                      _buildInfoRow("Previous Surgeries", "None"),
-                      const SizedBox(height: 10),
-                      _buildInfoRow("Hospital Referrals", "None"),
-                      const SizedBox(height: 10),
-                      _buildInfoRow("Father's Medical History", "Hypertension"),
-                      const SizedBox(height: 10),
-                      _buildInfoRow("Mother's Medical History", "Diabetes"),
-                      const SizedBox(height: 10),
-                      _buildInfoRow(
-                          "Grandfather's Medical History", "Heart Disease"),
-                      const SizedBox(height: 10),
-                      _buildInfoRow("Sensitivities", "None"),
-                      const SizedBox(height: 10),
-                      _buildInfoRow("Medications",
-                          "Lisinopril (10mg) for blood pressure"),
-                      const SizedBox(height: 10),
-                      _buildInfoRow(
-                          "Vaccinations", "Flu vaccine received annually"),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Row _buildInfoRow(String key, String value) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          key,
-          style: const TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        Text(
-          value,
-          style: const TextStyle(
-            fontSize: 18,
-          ),
-        ),
-      ],
-    );
+                )),
+                fallback: (context) =>
+                    Center(child: CircularProgressIndicator()),
+              );
+            }));
   }
 }
+
+
+//             const SizedBox(height: 20),
+//             Text(
+//               "Medical History",
+//               style: Theme.of(context).textTheme.headline5!.copyWith(
+//                     color: Colors.blue,
+//                     fontWeight: FontWeight.bold,
+//                   ),
+//             ),
+//             const SizedBox(height: 20),
+//             Card(
+//               elevation: 2,
+//               shape: RoundedRectangleBorder(
+//                 borderRadius: BorderRadius.circular(10),
+//               ),
+//               child: Padding(
+//                 padding: const EdgeInsets.all(15),
+//                 child: Column(
+//                   crossAxisAlignment: CrossAxisAlignment.start,
+//                   children: [
+//                     _buildInfoRow("Previous Medical Conditions", "None"),
+//                     const SizedBox(height: 10),
+//                     _buildInfoRow("Previous Surgeries", "None"),
+//                     const SizedBox(height: 10),
+//                     _buildInfoRow("Hospital Referrals", "None"),
+//                     const SizedBox(height: 10),
+//                     _buildInfoRow("Father's Medical History", "Hypertension"),
+//                     const SizedBox(height: 10),
+//                     _buildInfoRow("Mother's Medical History", "Diabetes"),
+//                     const SizedBox(height: 10),
+//                     _buildInfoRow(
+//                         "Grandfather's Medical History", "Heart Disease"),
+//                     const SizedBox(height: 10),
+//                     _buildInfoRow("Sensitivities", "None"),
+//                     const SizedBox(height: 10),
+//                     _buildInfoRow("Medications",
+//                         "Lisinopril (10mg) for blood pressure"),
+//                     const SizedBox(height: 10),
+//                     _buildInfoRow(
+//                         "Vaccinations", "Flu vaccine received annually"),
+//                   ],
+//                 ),
+//               ),
+//             ),
+//           ],
+//         ),
+//       ),
+//     ),
+//   );
+// }
+
+// Row _buildInfoRow(String key, String value) {
+//   return Row(
+//     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//     children: [
+//       Text(
+//         key,
+//         style: const TextStyle(
+//           fontSize: 18,
+//           fontWeight: FontWeight.bold,
+//         ),
+//       ),
+//       Text(
+//         value,
+//         style: const TextStyle(
+//           fontSize: 18,
+//         ),
+//       ),
+//     ],
+//   );
+// }
+//}

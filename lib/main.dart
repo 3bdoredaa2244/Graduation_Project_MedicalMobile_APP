@@ -1,29 +1,25 @@
-import 'package:clickcounter/Screen_1.dart';
-import 'package:clickcounter/Screen_5.dart';
-import 'package:clickcounter/Screen_6.dart';
-import 'package:clickcounter/Screen_7.dart';
-import 'package:clickcounter/dio/diohelper.dart';
 import 'package:flutter/material.dart';
+import 'package:rosheta/Doctors.dart';
+import 'package:rosheta/Prescription.dart';
 
-import 'Screen_4.dart';
-import 'Screen_8.dart';
+import 'Login/login.dart';
+import 'Screen_3.dart';
 
 void main() {
-  DioHelper.init();
-  
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: MedicineRecord(),
-      //     routes: {
-      //     'Screen_3':(context){
-      //      return MyApp();
-      // },
-      //    },
-    );
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: LoginScreen());
   }
 }

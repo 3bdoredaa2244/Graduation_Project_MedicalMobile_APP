@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:clickcounter/QR_Code.dart';
-import 'package:clickcounter/Screen_4.dart';
-import 'package:clickcounter/Screen_5.dart';
-import 'package:clickcounter/Screen_6.dart';
-import 'package:clickcounter/Screen_7.dart';
-import 'package:clickcounter/Screen_8.dart';
+import 'package:rosheta/appointment.dart';
+
+import 'Prescription.dart';
+// import 'package:clickcounter/QR_Code.dart';
+// import 'package:clickcounter/Screen_4.dart';
+// import 'package:clickcounter/Screen_5.dart';
+// import 'package:clickcounter/Screen_6.dart';
+// import 'package:clickcounter/Screen_7.dart';
+// import 'package:clickcounter/Screen_8.dart';
 
 void main() => runApp(const Options());
 
@@ -23,13 +26,21 @@ class Options extends StatelessWidget {
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: const Text(
-            _title,
-            style: const TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 24,
-            ),
+          backgroundColor: Colors.white,
+          title: Text(
+            "Make Appointment",
+            style: TextStyle(color: Colors.black),
           ),
+          actions: [
+            Container(
+              width: 200,
+              child: Image.asset(
+                'assets/images/medical.png',
+                width: 100,
+              ),
+            ),
+          ],
+          elevation: 0,
         ),
         body: const MyStatefulWidget(),
       ),
@@ -74,31 +85,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => Specialization()),
-              );
-              print(nameController.text);
-              print(passwordController.text);
-            },
-            child: const Text(
-              'Make An Appointment',
-              style: TextStyle(fontSize: 20),
-            ),
-            style: ElevatedButton.styleFrom(
-              minimumSize: const Size(double.infinity, 80),
-              primary: Colors.blue,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16),
-              ),
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => Appointment()),
+                MaterialPageRoute(builder: (context) => AppointmentScreen()),
               );
               print(nameController.text);
               print(passwordController.text);
@@ -122,7 +109,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => MedicineRecord()),
+                MaterialPageRoute(builder: (context) => AppointmentScreen()),
               );
             },
             child: const Text(
@@ -145,7 +132,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => PrescriptionTable(prescriptionData: []),
+                  builder: (context) => PrescriptionScreen(),
                 ),
               );
               print(nameController.text);
@@ -165,25 +152,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           ),
           const SizedBox(
             height: 20,
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => QRCodeScreen()),
-              );
-            },
-            child: const Text(
-              'Check QR CodeScreen',
-              style: TextStyle(fontSize: 20),
-            ),
-            style: ElevatedButton.styleFrom(
-              minimumSize: const Size(double.infinity, 80),
-              primary: Colors.blue,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16),
-              ),
-            ),
           ),
         ],
       ),
